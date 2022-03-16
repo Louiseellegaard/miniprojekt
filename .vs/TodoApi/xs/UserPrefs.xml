@@ -1,0 +1,37 @@
+﻿<Properties StartupConfiguration="{C1EFD778-83AE-486F-919D-DFA624244734}|Default">
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.TodoApi PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Service/DataService.cs">
+    <Files>
+      <File FileName="Service/DataService.cs" Line="37" Column="6" />
+      <File FileName="Model/User.cs" Line="1" Column="1" />
+      <File FileName="Program.cs" Line="116" Column="1" />
+      <File FileName="Data/TodoContext.cs" Line="2" Column="13" />
+      <File FileName="Model/TodoTask.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="TodoApi" expanded="True">
+            <Node name="TodoApi" expanded="True">
+              <Node name="Data" expanded="True" />
+              <Node name="Migrations" expanded="True">
+                <Node name="20220304073811_InitialMigration.cs" selected="True" />
+              </Node>
+              <Node name="Model" expanded="True" />
+              <Node name="Service" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
