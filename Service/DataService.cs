@@ -17,20 +17,17 @@ public class DataService
     /// Seeder noget nyt data i databasen hvis det er nødvendigt.
     /// </summary>
     public void SeedData() {
-        User user = db.Users.FirstOrDefault()!;
-        if (user == null) {
-            user = new User("Kristian");
-            db.Users.Add(user);
-            db.Users.Add(new User("Søren"));
-            db.Users.Add(new User("Mette"));
+        Question question = db.Users.FirstOrDefault()!;
+        if (question == null) {
+            question = new Question("Kristian", "hjo", DateTime.Now, 12, 23);
+            db.Users.Add(new Que("heidi", "hjo", DateTime.Now, 12, 23));
+            db.Users.Add(new User("Kristipwlsan", "hjo", DateTime.Now, 12, 23));
         }
 
-        TodoTask task = db.Tasks.FirstOrDefault()!;
-        if (task == null)
+        Subject task = db.Subjects.FirstOrDefault()!;
+        if (Subject == null)
         {
-            db.Tasks.Add(new TodoTask("Husk denne opgave", false, user));
-            db.Tasks.Add(new TodoTask("Lave kaffe", true, user));
-            db.Tasks.Add(new TodoTask("Betale regninger", false, user));
+            db.Tasks.Add(new Subject("Husk denne opgave"));
         }
 
         db.SaveChanges();
