@@ -6,13 +6,12 @@ using Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Swagger-hallÃ¸j der tilfÃ¸jer nogle udviklingsvÃ¦rktÃ¸jer direkte i app'en.
-// Se mere her: https://aka.ms/aspnetcore/swashbuckle
+// Add services to the container.
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// CORS skal slÃ¥es til i app'en. Ellers kan man ikke hente data fra den
-// fra et andet domÃ¦ne.
+// CORS skal slåes til i app'en. Ellers kan man ikke hente data fra et andet domæne.
 // Se mere her: https://docs.microsoft.com/en-us/aspnet/core/security/cors?view=aspnetcore-6.0
 var AllowSomeStuff = "_AllowSomeStuff";
 builder.Services.AddCors(options =>
@@ -24,40 +23,40 @@ builder.Services.AddCors(options =>
     });
 });
 
-// TilfÃ¸j DbContext factory som service.
-// Det gÃ¸r at man kan fÃ¥ TodoContext ind via dependecy injection - fx 
-// i DataService (smart!)
-builder.Services.AddDbContext<TodoContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("TodoContextSQLite")));
+// Tilføj DbContext factory som service, så man kan få context ind via Dependency Injection.
+builder.Services.AddDbContext<QuestionContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("QuestionContextSQLite")));
 
-// Kan vise flotte fejlbeskeder i browseren hvis der kommer fejl fra databasen
+// Kan vise flotte fejlbeskeder i browseren, hvis der kommer fejl fra databasen
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-// TilfÃ¸j DataService sÃ¥ den kan bruges i endpoints
+// Tilføj 'DataService' så den kan bruges i endpoints
 builder.Services.AddScoped<DataService>();
 
-// Her kan man styrer hvordan den laver JSON.
+// Her kan man styre, hvordan den laver JSON.
 builder.Services.Configure<JsonOptions>(options =>
 {
-    // Super vigtig option! Den gÃ¸r, at programmet ikke smider fejl
-    // nÃ¥r man returnerer JSON med objekter, der refererer til hinanden.
-    // (altsÃ¥ dobbelrettede associeringer)
+    // Super vigtig option! Den gør, at programmet ikke smider fejl,
+    // når man returnerer JSON med objekter, der refererer til hinanden.
+    // (altså dobbelrettede associeringer)
     options.SerializerOptions.ReferenceHandler = 
         System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
 });
 
-// Byg app'ens objekt
+
+// ---------------------------------------------------------------
+
 var app = builder.Build();
 
-// Seed data hvis nÃ¸dvendigt
+// Seeding af data, hvis databasen er tom
 using (var scope = app.Services.CreateScope())
 {
-    // Med scope kan man hente en service.
+    // Med 'scope' kan man hente en service.
     var dataService = scope.ServiceProvider.GetRequiredService<DataService>();
-    dataService.SeedData(); // Fylder data pÃ¥ hvis databasen er tom.
+    dataService.SeedData(); // 'SeedData()' er defineret i 'DataService.cs', og fylder data på databasen, hvis den er tom.
 }
 
-// SÃ¦t Swagger og alt det andet hallÃ¸j op
+// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -69,53 +68,98 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseCors(AllowSomeStuff);
 
-// Middlware der kÃ¸rer fÃ¸r hver request. Alle svar skal have ContentType: JSON.
+// Middlware der kører før hver request. Alle svar skal have ContentType: JSON.
 app.Use(async (context, next) =>
 {
     context.Response.ContentType = "application/json; charset=utf-8";
     await next(context);
 });
 
-// Herunder alle endpoints i API'en
+// Endpoints i API'en --------------------------------------------
+
 app.MapGet("/", (HttpContext context, DataService service) =>
 {
     context.Response.ContentType = "text/html;charset=utf-8";
-    return "Hejsa. Her er der intet at se. PrÃ¸v i stedet: " + 
-            "<a href=\"/api/tasks\">/api/tasks</a>";
+    return "Hejsa. Her er der intet at se. Prøv i stedet: " + 
+            "<a href=\"/api/questions\">/api/questions</a>";
 });
 
-app.MapGet("/api/tasks", (DataService service) =>
+
+// ---------------------------------------------------------------
+// -- Questions --
+
+app.MapGet("/api/questions/", (DataService service) =>
 {
-    return service.GetTasks();
+    return service.ListQuestions();
 });
 
-app.MapGet("/api/tasks/{id}", (DataService service, int id) =>
+app.MapGet("/api/questions/{id}", (DataService service, int id) =>
 {
-    return service.GetTaskById(id);
+    return service.GetQuestionById(id);
 });
 
-app.MapPost("/api/tasks/", (TaskData data, DataService service) =>
+app.MapGet("/api/questions/{id}/subject", (DataService service, int id) =>
 {
-    return service.CreateTask(data.text, data.done, data.userId);
+    return service.ListQuestionsBySubjectId(id);
 });
 
-app.MapGet("/api/users", (DataService service) =>
+app.MapPost("/api/questions/", (DataService service, QuestionData data) =>
 {
-    return service.GetUsers();
+    return service.createQuestion(data.subjectId, data.title, data.text, data.username);
 });
 
-app.MapPost("/api/users/", (UserData data, DataService service) =>
+app.MapPut("/api/questions/{id}/upvote", (DataService service, int id) =>
 {
-    return service.CreateUser(data.name);
+    return service.updateQuestionByIdUpvote(id);
 });
 
-app.MapGet("/api/users/{id}", (DataService service, int id) =>
+app.MapPut("/api/questions/{id}/downvote", (DataService service, int id) =>
 {
-    return service.GetUserById(id);
+    return service.updateQuestionByIdDownvote(id);
 });
+
+// ---------------------------------------------------------------
+// -- Subjects --
+
+app.MapGet("/api/subjects/", (DataService service) =>
+{
+    return service.ListSubjects();
+});
+
+app.MapGet("/api/subjects/{id}", (DataService service, int id) =>
+{
+    return service.GetSubjectById(id);
+});
+
+// ---------------------------------------------------------------
+// -- Answers --
+
+app.MapGet("/api/answers/{id}/question", (DataService service, int id) =>
+{
+    return service.ListAnswersByQuestionId(id);
+});
+
+app.MapPost("/api/answers/", (DataService service, AnswerData data) =>
+{
+    return service.CreateAnswer(data.questionId, data.text, data.username);
+});
+
+app.MapPut("/api/answers/{id}/upvote", (DataService service, int id) =>
+{
+    return service.updateAnswerByIdUpvote(id);
+});
+
+app.MapPut("/api/answers/{id}/downvote", (DataService service, int id) =>
+{
+    return service.updateAnswerByIdDownvote(id);
+});
+
+// ---------------------------------------------------------------
 
 app.Run();
 
-// Records til input data (svarende til input JSON)
-record TaskData(string text, bool done, int userId);
-record UserData(string name);
+// -- Records ----------------------------------------------------
+
+record QuestionData(int subjectId, string title, string text, string username);
+record SubjectData(string name);
+record AnswerData(int questionId, string text, string username);
