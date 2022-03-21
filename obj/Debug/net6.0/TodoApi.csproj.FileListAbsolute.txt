@@ -257,3 +257,13 @@
 /Users/louiseellegaard/Desktop/softark-spring-2022/modul06/webapi-ef-skabelon/obj/Debug/net6.0/TodoApi.pdb
 /Users/louiseellegaard/Desktop/softark-spring-2022/modul06/webapi-ef-skabelon/obj/Debug/net6.0/TodoApi.genruntimeconfig.cache
 /Users/louiseellegaard/Desktop/softark-spring-2022/modul06/webapi-ef-skabelon/obj/Debug/net6.0/ref/TodoApi.dll
+/Users/kennyau/3sem/Miniprojekthihi/miniprojekt/obj/Debug/net6.0/TodoApi.csproj.AssemblyReference.cache
+/Users/kennyau/3sem/Miniprojekthihi/miniprojekt/obj/Debug/net6.0/TodoApi.GeneratedMSBuildEditorConfig.editorconfig
+/Users/kennyau/3sem/Miniprojekthihi/miniprojekt/obj/Debug/net6.0/TodoApi.AssemblyInfoInputs.cache
+/Users/kennyau/3sem/Miniprojekthihi/miniprojekt/obj/Debug/net6.0/TodoApi.AssemblyInfo.cs
+/Users/kennyau/3sem/Miniprojekthihi/miniprojekt/obj/Debug/net6.0/TodoApi.csproj.CoreCompileInputs.cache
+/Users/kennyau/3sem/Miniprojekthihi/miniprojekt/obj/Debug/net6.0/TodoApi.MvcApplicationPartsAssemblyInfo.cs
+/Users/kennyau/3sem/Miniprojekthihi/miniprojekt/obj/Debug/net6.0/TodoApi.MvcApplicationPartsAssemblyInfo.cache
+/Users/kennyau/3sem/Miniprojekthihi/miniprojekt/obj/Debug/net6.0/TodoApi.dll
+/Users/kennyau/3sem/Miniprojekthihi/miniprojekt/obj/Debug/net6.0/refint/TodoApi.dll
+/Users/kennyau/3sem/Miniprojekthihi/miniprojekt/obj/Debug/net6.0/TodoApi.pdb

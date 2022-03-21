@@ -16,7 +16,5 @@ namespace Model
         public DateTime Date { get; set; }
         public int Upvote { get; set; }
         public int Downvote { get; set; }
-
-        public List<Question> Questions { get; set; }
     }
 }

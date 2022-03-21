@@ -11,12 +11,13 @@ namespace Model
 
         }
         public long QuestionId { get; set; }
+        public Subject Subject { get; set; }
         public string Name { get; set; }
         public string Text { get; set; }
         public DateTime Date { get; set; }
         public int Upvote { get; set; }
         public int Downvote { get; set; }
 
-        public List<Question> Questions { get; set; }
+        public List<Answer> Answers { get; set; }
     }
 }

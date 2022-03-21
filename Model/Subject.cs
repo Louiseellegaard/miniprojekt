@@ -12,5 +12,7 @@ namespace Model
         public override string ToString() {
             return $"{SubjectId}, {Subjectname}";
         }
+
+        public List<Question> Questions { get; set; }
     }
 }
