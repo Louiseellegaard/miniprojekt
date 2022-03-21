@@ -17,6 +17,6 @@ namespace Model
         public int Upvote { get; set; }
         public int Downvote { get; set; }
 
-        public List<Question> Questions { get; set; }
+      
     }
 }

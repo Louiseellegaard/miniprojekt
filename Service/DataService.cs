@@ -17,44 +17,43 @@ public class DataService
     /// Seeder noget nyt data i databasen hvis det er nødvendigt.
     /// </summary>
     public void SeedData() {
-        Question question = db.Users.FirstOrDefault()!;
+        Question question = db.Questions.FirstOrDefault()!;
         if (question == null) {
-            question = new Question("Kristian", "hjo", DateTime.Now, 12, 23);
-            db.Users.Add(new Que("heidi", "hjo", DateTime.Now, 12, 23));
-            db.Users.Add(new User("Kristipwlsan", "hjo", DateTime.Now, 12, 23));
+            question = new Question("Kristian", "Hvordan koder man?", DateTime.Now, 12, 23);
+            db.Questions.Add(new Question("heidi", "Hvordan får man en kæreste?", DateTime.Now, 12, 23));
+            db.Questions.Add(new Question("Louise", "Hvordan bager en kage?", DateTime.Now, 12, 23));
         }
 
-        Subject task = db.Subjects.FirstOrDefault()!;
-        if (Subject == null)
+        Subject subject = db.Subjects.FirstOrDefault()!;
+        if (subject == null)
         {
-            db.Tasks.Add(new Subject("Husk denne opgave"));
+            db.Subjects.Add(new Subject("C#"));
         }
 
         db.SaveChanges();
     }
 
-    public List<TodoTask> GetTasks() {
-        return db.Tasks
-            .Include(task => task.User)
+    public List<Question> GetQuesions() {
+        return db.Questions
             .ToList();
     }
 
-    public TodoTask GetTaskById(int id) {
-        var task = db
-            .Tasks
-            .Where(task => task.TodoTaskId == id)
-            .Include(t => t.User)
+    public Question GetQuestionById(int id) {
+        var question = db
+            .Questions
+            .Where(question => question.QuestionId == id)
+            .Include(t => t.Subject)
             .First();
-        return task;
+        return question;
     }
 
-    public string CreateTask(string text, bool done, int userId) {
-        User user = db.Users.Where(user => user.UserId == userId).First();
-        TodoTask task = new TodoTask(text, done, user);
-        db.Tasks.Add(task);
+    public string CreateQuestion(string name, string text, DateTime date, int downvote, int upvote) {
+        Subject subject = db.Subjects.Where(subject => Subject.SubjectId == subjectId).First();
+        Question task = new Question(text, name, date, upvote, downvote);
+        db.Questions.Add(task);
         db.SaveChanges();
         return JsonSerializer.Serialize(
-            new { msg = "New task created", newTask = task }
+            new { msg = "New task created", newQuestion = question }
         );
     }
 
@@ -64,16 +63,16 @@ public class DataService
 
     public string CreateUser(string name) {
         var user = new User(name);
-        db.Users.Add(user);
+        db.Subjects.Add(user);
         db.SaveChanges();
         return JsonSerializer.Serialize(
             new { msg = "New user created", newUser = user });
     }
 
-    public User GetUserById(int id)
+    public Subject> GetSubjectById(int id)
     {
         var User = db
-            .Users
+            .su
             .Where(User => User.UserId == id)
             .Include(t => t.Tasks)
             .First();

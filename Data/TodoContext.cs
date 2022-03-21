@@ -5,8 +5,9 @@ namespace Data
 {
     public class TodoContext : DbContext
     {
-        public DbSet<TodoTask> Tasks => Set<TodoTask>();
-        public DbSet<User> Users => Set<User>();
+        public DbSet<Answer> Answers => Set<Answer>();
+        public DbSet<Question> Questions => Set<Question>();
+        public DbSet<Subject> Subjects => Set<Subject>();
 
         public TodoContext (DbContextOptions<TodoContext> options)
             : base(options)
@@ -18,7 +19,9 @@ namespace Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Et eksempel på at man selv kan styre hvad en tabel skal hedde.
-            modelBuilder.Entity<TodoTask>().ToTable("Tasks");
+            modelBuilder.Entity<Subject>().ToTable("Subjects");
+              modelBuilder.Entity<Answer>().ToTable("Answers");
+                modelBuilder.Entity<Question>().ToTable("Questions");
         }
     }
 }
