@@ -11,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// CORS skal slåes til i app'en. Ellers kan man ikke hente data fra et andet domæne.
+// CORS skal slï¿½es til i app'en. Ellers kan man ikke hente data fra et andet domï¿½ne.
 // Se mere her: https://docs.microsoft.com/en-us/aspnet/core/security/cors?view=aspnetcore-6.0
 var AllowSomeStuff = "_AllowSomeStuff";
 builder.Services.AddCors(options =>
@@ -23,22 +23,22 @@ builder.Services.AddCors(options =>
     });
 });
 
-// Tilføj DbContext factory som service, så man kan få context ind via Dependency Injection.
+// Tilfï¿½j DbContext factory som service, sï¿½ man kan fï¿½ context ind via Dependency Injection.
 builder.Services.AddDbContext<QuestionContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("QuestionContextSQLite")));
 
 // Kan vise flotte fejlbeskeder i browseren, hvis der kommer fejl fra databasen
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-// Tilføj 'DataService' så den kan bruges i endpoints
+// Tilfï¿½j 'DataService' sï¿½ den kan bruges i endpoints
 builder.Services.AddScoped<DataService>();
 
 // Her kan man styre, hvordan den laver JSON.
 builder.Services.Configure<JsonOptions>(options =>
 {
-    // Super vigtig option! Den gør, at programmet ikke smider fejl,
-    // når man returnerer JSON med objekter, der refererer til hinanden.
-    // (altså dobbelrettede associeringer)
+    // Super vigtig option! Den gï¿½r, at programmet ikke smider fejl,
+    // nï¿½r man returnerer JSON med objekter, der refererer til hinanden.
+    // (altsï¿½ dobbelrettede associeringer)
     options.SerializerOptions.ReferenceHandler = 
         System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
 });
@@ -53,7 +53,7 @@ using (var scope = app.Services.CreateScope())
 {
     // Med 'scope' kan man hente en service.
     var dataService = scope.ServiceProvider.GetRequiredService<DataService>();
-    dataService.SeedData(); // 'SeedData()' er defineret i 'DataService.cs', og fylder data på databasen, hvis den er tom.
+    dataService.SeedData(); // 'SeedData()' er defineret i 'DataService.cs', og fylder data pï¿½ databasen, hvis den er tom.
 }
 
 // Configure the HTTP request pipeline.
@@ -68,7 +68,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseCors(AllowSomeStuff);
 
-// Middlware der kører før hver request. Alle svar skal have ContentType: JSON.
+// Middlware der kï¿½rer fï¿½r hver request. Alle svar skal have ContentType: JSON.
 app.Use(async (context, next) =>
 {
     context.Response.ContentType = "application/json; charset=utf-8";
@@ -80,7 +80,7 @@ app.Use(async (context, next) =>
 app.MapGet("/", (HttpContext context, DataService service) =>
 {
     context.Response.ContentType = "text/html;charset=utf-8";
-    return "Hejsa. Her er der intet at se. Prøv i stedet: " + 
+    return "Hejsa. Her er der intet at se. Prï¿½v i stedet: " + 
             "<a href=\"/api/questions\">/api/questions</a>";
 });
 
