@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "FilePath": "/Users/louiseellegaard/webapi-ef-skabelon/TodoApi.csproj",
+=======
+  "FilePath": "/Users/kennyau/3sem/Miniprojekthihi/miniprojekt/MiniprojektAPI.csproj",
+>>>>>>> 1553959b1b1825efaf2dd7b078e22cf21910506e
   "Configuration": {
     "ConfigurationName": "MVC-3.0",
     "LanguageVersion": "6.0",
@@ -16295,7 +16299,7 @@
     ],
     "CSharpLanguageVersion": 1000
   },
-  "RootNamespace": "TodoApi",
+  "RootNamespace": "MiniprojektAPI",
   "Documents": [],
   "SerializationFormat": "0.2"
 }

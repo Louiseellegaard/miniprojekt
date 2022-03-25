@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/louiseellegaard/Desktop/softark-spring-2022/modul06/webapi-ef-skabelon/TodoApi.csproj": {}
+    "/Users/kennyau/3sem/Miniprojekthihi/miniprojekt/MiniprojektAPI.csproj": {}
   },
   "projects": {
-    "/Users/louiseellegaard/Desktop/softark-spring-2022/modul06/webapi-ef-skabelon/TodoApi.csproj": {
+    "/Users/kennyau/3sem/Miniprojekthihi/miniprojekt/MiniprojektAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/louiseellegaard/Desktop/softark-spring-2022/modul06/webapi-ef-skabelon/TodoApi.csproj",
-        "projectName": "TodoApi",
-        "projectPath": "/Users/louiseellegaard/Desktop/softark-spring-2022/modul06/webapi-ef-skabelon/TodoApi.csproj",
-        "packagesPath": "/Users/louiseellegaard/.nuget/packages/",
-        "outputPath": "/Users/louiseellegaard/Desktop/softark-spring-2022/modul06/webapi-ef-skabelon/obj/",
+        "projectUniqueName": "/Users/kennyau/3sem/Miniprojekthihi/miniprojekt/MiniprojektAPI.csproj",
+        "projectName": "MiniprojektAPI",
+        "projectPath": "/Users/kennyau/3sem/Miniprojekthihi/miniprojekt/MiniprojektAPI.csproj",
+        "packagesPath": "/Users/kennyau/.nuget/packages/",
+        "outputPath": "/Users/kennyau/3sem/Miniprojekthihi/miniprojekt/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/louiseellegaard/.nuget/NuGet/NuGet.Config"
+          "/Users/kennyau/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -40,17 +40,17 @@
           "dependencies": {
             "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[6.0.2, )"
+              "version": "[6.0.3, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[6.0.2, )"
+              "version": "[6.0.3, )"
             },
             "Microsoft.EntityFrameworkCore.SQLite": {
               "target": "Package",
-              "version": "[6.0.2, )"
+              "version": "[6.0.3, )"
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
@@ -79,7 +79,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.201/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.200/RuntimeIdentifierGraph.json"
         }
       }
     }
